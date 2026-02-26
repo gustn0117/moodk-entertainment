@@ -25,22 +25,20 @@ export default function Dashboard() {
       <div className="admin-stats">
         <div className="admin-stat-card">
           <div className="admin-stat-value">{stats.artists}</div>
-          <div className="admin-stat-label">아티스트</div>
+          <div className="admin-stat-label">Artists</div>
         </div>
         <div className="admin-stat-card">
           <div className="admin-stat-value">{stats.notices}</div>
-          <div className="admin-stat-label">공지사항</div>
+          <div className="admin-stat-label">Notices</div>
         </div>
         <div className="admin-stat-card">
           <div className="admin-stat-value">3</div>
-          <div className="admin-stat-label">사이트 설정</div>
+          <div className="admin-stat-label">Settings</div>
         </div>
       </div>
 
       <div className="admin-card">
-        <h3 style={{ fontSize: "14px", color: "var(--color-accent)", marginBottom: "12px" }}>
-          빠른 링크
-        </h3>
+        <div className="admin-card-header">Quick Access</div>
         <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
           <a href="/admin/artists" className="admin-btn admin-btn-secondary">
             아티스트 관리

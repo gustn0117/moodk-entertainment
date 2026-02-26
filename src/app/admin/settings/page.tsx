@@ -43,8 +43,8 @@ export default function SettingsPage() {
 
       {/* Hero Video */}
       <div className="admin-card">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-          <h3 style={{ fontSize: "13px", color: "var(--color-accent)", letterSpacing: "2px" }}>HERO VIDEO</h3>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+          <div className="admin-card-header" style={{ marginBottom: 0 }}>Hero Video</div>
           <button
             className="admin-btn admin-btn-primary admin-btn-sm"
             onClick={() => saveSection("hero_video", hero)}
@@ -82,8 +82,8 @@ export default function SettingsPage() {
 
       {/* Company Info */}
       <div className="admin-card">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-          <h3 style={{ fontSize: "13px", color: "var(--color-accent)", letterSpacing: "2px" }}>COMPANY INFO</h3>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+          <div className="admin-card-header" style={{ marginBottom: 0 }}>Company Info</div>
           <button
             className="admin-btn admin-btn-primary admin-btn-sm"
             onClick={() => saveSection("company_info", company)}
@@ -139,8 +139,8 @@ export default function SettingsPage() {
 
       {/* Audition Info */}
       <div className="admin-card">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-          <h3 style={{ fontSize: "13px", color: "var(--color-accent)", letterSpacing: "2px" }}>AUDITION INFO</h3>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+          <div className="admin-card-header" style={{ marginBottom: 0 }}>Audition Info</div>
           <button
             className="admin-btn admin-btn-primary admin-btn-sm"
             onClick={() => saveSection("audition_info", audition)}

@@ -151,9 +151,7 @@ export default function ArtistEditPage({ params }: { params: Promise<{ id: strin
 
       {/* Profile Image */}
       <div className="admin-card">
-        <h3 style={{ fontSize: "13px", color: "var(--color-accent)", marginBottom: "16px", letterSpacing: "2px" }}>
-          PROFILE IMAGE
-        </h3>
+        <div className="admin-card-header">Profile Image</div>
         <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
           <div style={{ width: "150px", aspectRatio: "3/4", borderRadius: "6px", overflow: "hidden", background: "var(--color-bg-card)", border: "1px solid var(--color-border)", flexShrink: 0 }}>
             {artist.profile_image ? (
@@ -178,9 +176,7 @@ export default function ArtistEditPage({ params }: { params: Promise<{ id: strin
 
       {/* Basic Info */}
       <div className="admin-card">
-        <h3 style={{ fontSize: "13px", color: "var(--color-accent)", marginBottom: "16px", letterSpacing: "2px" }}>
-          BASIC INFO
-        </h3>
+        <div className="admin-card-header">Basic Info</div>
         <div className="admin-form-grid">
           <div className="admin-form-group">
             <label className="admin-label">한글 이름</label>
@@ -211,9 +207,7 @@ export default function ArtistEditPage({ params }: { params: Promise<{ id: strin
 
       {/* Filmography */}
       <div className="admin-card">
-        <h3 style={{ fontSize: "13px", color: "var(--color-accent)", marginBottom: "16px", letterSpacing: "2px" }}>
-          FILMOGRAPHY
-        </h3>
+        <div className="admin-card-header">Filmography</div>
 
         {filmography.length > 0 && (
           <table className="admin-table" style={{ marginBottom: "20px" }}>
@@ -269,9 +263,7 @@ export default function ArtistEditPage({ params }: { params: Promise<{ id: strin
 
       {/* Photos */}
       <div className="admin-card">
-        <h3 style={{ fontSize: "13px", color: "var(--color-accent)", marginBottom: "16px", letterSpacing: "2px" }}>
-          GALLERY PHOTOS
-        </h3>
+        <div className="admin-card-header">Gallery Photos</div>
 
         <div className="admin-photo-grid">
           {(artist.photos || []).map((url, idx) => (

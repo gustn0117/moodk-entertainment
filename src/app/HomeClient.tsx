@@ -206,13 +206,9 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
             <video className="hero-video" autoPlay muted loop playsInline src={heroVideo.url} />
           )
         ) : (
-          <div
-            className="hero-video"
-            style={{
-              background: "linear-gradient(135deg, #1a1410 0%, #2a2118 30%, #3a2e22 60%, #1a1410 100%)",
-            }}
-          />
+          <div className="hero-video hero-gradient-bg" />
         )}
+        <div className="hero-bg-grain" />
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1 className="hero-title">MOOD K</h1>
@@ -242,14 +238,20 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
       <section id="artists" style={{ padding: "120px 0", background: "var(--color-bg-primary)" }}>
         <div className="section-container">
           <div className="reveal">
-            <h2 className="section-title">Artists</h2>
+            <div className="section-title-wrap">
+              <span className="section-number">01</span>
+              <h2 className="section-title">Artists</h2>
+              <span className="section-title-bar" />
+            </div>
           </div>
 
           {artists.map((artist) => (
-            <div key={artist.id}>
-              <div className="reveal" style={{ marginBottom: "56px" }}>
-                <div className="artist-name-en">{artist.name_en}</div>
-                <div className="artist-name-ko">{artist.name_ko}</div>
+            <div key={artist.id} className="artist-block">
+              <div className="reveal">
+                <div className="artist-name-wrap">
+                  <div className="artist-name-en">{artist.name_en}</div>
+                  <div className="artist-name-ko">{artist.name_ko}</div>
+                </div>
               </div>
 
               <div className="artist-profile-grid">
@@ -259,10 +261,9 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
                       className="artist-main-photo"
                       src={artist.profile_image}
                       alt={artist.name_ko}
-                      style={{ borderRadius: "4px" }}
                     />
                   ) : (
-                    <div className="artist-main-photo img-placeholder" style={{ borderRadius: "4px" }}>
+                    <div className="artist-main-photo img-placeholder">
                       PROFILE PHOTO
                     </div>
                   )}
@@ -318,7 +319,7 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
                 <div className="artist-photo-grid">
                   {artist.photos.map((url, idx) => (
                     <div key={idx} className={`artist-photo-thumb reveal reveal-delay-${Math.min(idx + 1, 3)}`}>
-                      <img src={url} alt={`${artist.name_ko} photo ${idx + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "4px" }} />
+                      <img src={url} alt={`${artist.name_ko} photo ${idx + 1}`} />
                     </div>
                   ))}
                 </div>
@@ -334,7 +335,11 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
       <section id="notice" style={{ padding: "120px 0", background: "var(--color-bg-secondary)" }}>
         <div className="section-container">
           <div className="reveal">
-            <h2 className="section-title">Notice</h2>
+            <div className="section-title-wrap">
+              <span className="section-number">02</span>
+              <h2 className="section-title">Notice</h2>
+              <span className="section-title-bar" />
+            </div>
           </div>
 
           <div className="reveal">
@@ -370,7 +375,11 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
       <section id="audition" style={{ padding: "120px 0", background: "var(--color-bg-primary)" }}>
         <div className="section-container">
           <div className="reveal">
-            <h2 className="section-title">Audition</h2>
+            <div className="section-title-wrap">
+              <span className="section-number">03</span>
+              <h2 className="section-title">Audition</h2>
+              <span className="section-title-bar" />
+            </div>
           </div>
 
           <div className="audition-grid">
@@ -408,7 +417,11 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
       <section id="contact" style={{ padding: "120px 0", background: "var(--color-bg-secondary)" }}>
         <div className="section-container">
           <div className="reveal">
-            <h2 className="section-title">Contact</h2>
+            <div className="section-title-wrap">
+              <span className="section-number">04</span>
+              <h2 className="section-title">Contact</h2>
+              <span className="section-title-bar" />
+            </div>
           </div>
 
           <div className="contact-grid">
@@ -419,9 +432,11 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
               </div>
               <div className="contact-info-item">
                 <div className="contact-info-label">Address</div>
-                <div className="contact-info-value">{companyInfo.address}</div>
-                <div style={{ fontSize: "13px", color: "var(--color-text-muted)", marginTop: "4px" }}>
-                  {companyInfo.addressDetail}
+                <div>
+                  <div className="contact-info-value">{companyInfo.address}</div>
+                  <div style={{ fontSize: "13px", color: "var(--color-text-muted)", marginTop: "4px" }}>
+                    {companyInfo.addressDetail}
+                  </div>
                 </div>
               </div>
               <div className="contact-info-item">
@@ -450,6 +465,7 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
       {/* Footer */}
       <footer className="footer">
         <div className="section-container">
+          <div className="footer-divider" />
           <p className="footer-text">
             &copy; 2026 {companyInfo.name}. All Rights Reserved.
           </p>
