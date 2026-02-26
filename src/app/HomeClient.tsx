@@ -248,7 +248,7 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
       </section>
 
       {/* Artists Section */}
-      <section id="artists" style={{ padding: "140px 0", background: "var(--color-bg-primary)" }}>
+      <section id="artists" className="section-glow" style={{ padding: "140px 0", background: "var(--color-bg-primary)" }}>
         <div className="section-container">
           <div className="reveal-blur">
             <div className="section-title-wrap">
@@ -385,7 +385,7 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
       <div className="section-divider" />
 
       {/* Audition Section */}
-      <section id="audition" style={{ padding: "140px 0", background: "var(--color-bg-primary)" }}>
+      <section id="audition" className="section-glow" style={{ padding: "140px 0", background: "var(--color-bg-primary)" }}>
         <div className="section-container">
           <div className="reveal-blur">
             <div className="section-title-wrap">
