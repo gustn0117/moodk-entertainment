@@ -224,17 +224,18 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
         <div className="hero-bg-grain" />
         <div className="hero-overlay" />
         <div className="hero-content">
-          <h1 className="hero-title">MOOD K</h1>
-          <h2 className="hero-subtitle-en">ENTERTAINMENT</h2>
+          <h1 className="hero-title">MOOD K ENTERTAINMENT</h1>
+          <p className="hero-tagline">Management with Intention.</p>
           <div className="hero-divider" />
           <p className="hero-description">
-            배우의 가능성을 발굴하고, 진정성 있는 연기로
+            MOOD K ENTERTAINMENT는
             <br />
-            감동을 전하는 매니지먼트 회사입니다.
+            배우의 장기적 커리어를 설계합니다.
+          </p>
+          <p className="hero-description hero-description-sub">
+            작품 선택과 이미지 방향성을 기반으로
             <br />
-            한 사람 한 사람의 개성과 이야기를 존중하며,
-            <br />
-            함께 성장하는 파트너가 되겠습니다.
+            지속 가능한 활동을 관리합니다.
           </p>
         </div>
         <div className="scroll-indicator">
@@ -283,22 +284,10 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
                 </div>
 
                 <div className="reveal-right reveal-delay-1">
-                  <div className="artist-info-grid">
+                  <div className="artist-info-single">
                     <div className="artist-info-cell">
                       <div className="artist-info-label">Birth</div>
                       <div className="artist-info-value">{artist.birth_date}</div>
-                    </div>
-                    <div className="artist-info-cell">
-                      <div className="artist-info-label">Height</div>
-                      <div className="artist-info-value">{artist.height}</div>
-                    </div>
-                    <div className="artist-info-cell">
-                      <div className="artist-info-label">Weight</div>
-                      <div className="artist-info-value">{artist.weight}</div>
-                    </div>
-                    <div className="artist-info-cell">
-                      <div className="artist-info-label">Specialty</div>
-                      <div className="artist-info-value">{artist.specialty}</div>
                     </div>
                   </div>
 
