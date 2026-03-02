@@ -384,30 +384,51 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
             </div>
           </div>
 
-          <div className="audition-grid">
-            <div className="audition-card reveal-left">
-              <h3 className="audition-card-title">{auditionInfo.online.title}</h3>
-              <p className="audition-card-desc">{auditionInfo.online.description}</p>
-              <div className="audition-email">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <div className="audition-layout">
+            {/* Online Audition */}
+            <div className="audition-primary reveal">
+              <div className="audition-primary-header">
+                <span className="audition-type-label">Online</span>
+                <h3 className="audition-primary-title">{auditionInfo.online.title}</h3>
+              </div>
+              <p className="audition-primary-desc">{auditionInfo.online.description}</p>
+
+              <a href={`mailto:${auditionInfo.online.email}`} className="audition-email-block reveal-scale reveal-delay-1">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="M22 4L12 13 2 4" />
                 </svg>
-                {auditionInfo.online.email}
+                <span>{auditionInfo.online.email}</span>
+              </a>
+
+              <div className="audition-req-section reveal reveal-delay-2">
+                <div className="audition-req-title">제출 항목</div>
+                <div className="audition-req-items">
+                  {auditionInfo.online.requirements.map((req, idx) => (
+                    <div key={idx} className="audition-req-item">
+                      <span className="audition-req-num">{String(idx + 1).padStart(2, "0")}</span>
+                      <span>{req}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <ul className="audition-req-list">
-                {auditionInfo.online.requirements.map((req, idx) => (
-                  <li key={idx}>{req}</li>
-                ))}
-              </ul>
             </div>
 
-            <div className="audition-card reveal-right reveal-delay-1">
-              <h3 className="audition-card-title">{auditionInfo.offline.title}</h3>
-              <p className="audition-card-desc">{auditionInfo.offline.description}</p>
-              <p style={{ marginTop: "24px", fontSize: "13px", color: "var(--color-accent)", fontStyle: "italic" }}>
-                {auditionInfo.offline.note}
-              </p>
+            {/* Offline Audition */}
+            <div className="audition-secondary reveal reveal-delay-1">
+              <div className="audition-secondary-inner">
+                <span className="audition-type-label">Offline</span>
+                <h3 className="audition-secondary-title">{auditionInfo.offline.title}</h3>
+                <p className="audition-secondary-desc">{auditionInfo.offline.description}</p>
+                <div className="audition-notice">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg>
+                  <span>{auditionInfo.offline.note}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
