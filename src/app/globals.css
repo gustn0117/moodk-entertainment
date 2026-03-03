@@ -760,7 +760,7 @@ body {
   transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.notice-content.open { max-height: 200px; }
+.notice-content.open { max-height: 1000px; }
 
 .notice-content-inner {
   padding: 8px 0 8px 116px;
