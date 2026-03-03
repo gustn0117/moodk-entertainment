@@ -240,7 +240,7 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
         <div className="hero-bg-grain" />
         <div className="hero-overlay" />
         <div className="hero-content">
-          <h1 className="hero-title">MOOD K ENTERTAINMENT</h1>
+          <h1 className="hero-title">MOOD K<br />ENTERTAINMENT</h1>
           <p className="hero-tagline">Management with Intention</p>
           <div className="hero-divider" />
           <p className="hero-description">
@@ -378,7 +378,7 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
                   <path d="M4 6l4 4 4-4" />
                 </svg>
                 <div className={`notice-content ${openNotice === notice.id ? "open" : ""}`}>
-                  <div className="notice-content-inner">{notice.content}</div>
+                  <div className="notice-content-inner" style={{ whiteSpace: "pre-line" }}>{notice.content}</div>
                 </div>
               </div>
             ))}
@@ -425,11 +425,11 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
 
               <div className="audition-apply-card">
                 <div className="audition-apply-label">접수 방법</div>
-                <ol className="audition-apply-steps">
+                <ul className="audition-apply-list">
                   {auditionInfo.processSteps.map((step, i) => (
                     <li key={i}>{step}</li>
                   ))}
-                </ol>
+                </ul>
               </div>
             </div>
 
@@ -488,8 +488,15 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
             </div>
 
             <div className="reveal-right reveal-delay-1">
-              <div className="contact-map-placeholder">
-                지도 영역 (추후 Google Maps 삽입)
+              <div className="contact-map-wrap">
+                <iframe
+                  className="contact-map"
+                  src="https://maps.google.com/maps?q=%EA%B0%95%EB%82%A8%EA%B5%AC+%EB%85%BC%ED%98%84%EB%A1%9C+164%EA%B8%B8+6+%ED%9D%AC%EB%B4%89%EB%B9%8C%EB%94%A9&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                  title="MOOD K ENTERTAINMENT 위치"
+                />
               </div>
             </div>
           </div>
