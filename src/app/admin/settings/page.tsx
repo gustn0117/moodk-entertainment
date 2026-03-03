@@ -4,6 +4,29 @@ import { useState, useEffect } from "react";
 import AdminShell from "../AdminShell";
 import type { CompanyInfo, AuditionInfo, HeroVideo } from "@/lib/types";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function normalizeAudition(raw: any): AuditionInfo {
+  if (raw?.introText1) return raw as AuditionInfo;
+  return {
+    email: raw?.online?.email || raw?.email || "moodkent@gmail.com",
+    introText1: "MOOD K ENTERTAINMENT는\n아티스트의 현재보다 앞으로의 여정을 더 중요하게 생각합니다.",
+    introText2: "우리는 가능성을 서두르지 않습니다.\n한 사람의 방향과 시간을 충분히 바라본 후, 신중하게 결정합니다.",
+    materials: [
+      "일반 사진 (정면 및 측면 각 1장)",
+      "1분 이내 자기소개 영상",
+      "프로필 PDF 1부 또는 연기 영상 (경력자 해당)",
+      "활동 경력 사항 (경력자 해당)",
+    ],
+    processSteps: [
+      "위 자료를 이메일로 제출",
+      "이메일 제목: MOOD K AUDITION / 이름 / 출생연도",
+      "서류 검토 후, 합격자에 한해 2주 이내 개별 연락드립니다.",
+    ],
+    privacyNote: "제출된 모든 자료는 신중히 검토되며, 오디션 심사 목적 외 사용되지 않습니다.\n심사 종료 후 안전하게 관리됩니다.",
+  };
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
 export default function SettingsPage() {
   const [company, setCompany] = useState<CompanyInfo | null>(null);
   const [audition, setAudition] = useState<AuditionInfo | null>(null);
@@ -18,7 +41,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     fetch("/api/settings/company_info").then((r) => r.json()).then(setCompany);
-    fetch("/api/settings/audition_info").then((r) => r.json()).then(setAudition);
+    fetch("/api/settings/audition_info").then((r) => r.json()).then((data) => setAudition(normalizeAudition(data)));
     fetch("/api/settings/hero_video").then((r) => r.json()).then(setHero);
   }, []);
 
@@ -150,43 +173,55 @@ export default function SettingsPage() {
           </button>
         </div>
 
-        <h4 style={{ fontSize: "12px", color: "var(--color-text-secondary)", marginBottom: "12px" }}>온라인 오디션</h4>
         <div className="admin-form-grid">
-          <div className="admin-form-group">
-            <label className="admin-label">제목</label>
-            <input className="admin-input" value={audition.online.title} onChange={(e) => setAudition({ ...audition, online: { ...audition.online, title: e.target.value } })} />
-          </div>
           <div className="admin-form-group">
             <label className="admin-label">이메일</label>
-            <input className="admin-input" value={audition.online.email} onChange={(e) => setAudition({ ...audition, online: { ...audition.online, email: e.target.value } })} />
+            <input className="admin-input" value={audition.email} onChange={(e) => setAudition({ ...audition, email: e.target.value })} />
           </div>
           <div className="admin-form-group admin-form-full">
-            <label className="admin-label">설명</label>
-            <textarea className="admin-input admin-textarea" value={audition.online.description} onChange={(e) => setAudition({ ...audition, online: { ...audition.online, description: e.target.value } })} />
-          </div>
-          <div className="admin-form-group admin-form-full">
-            <label className="admin-label">제출 요건 (줄바꿈으로 구분)</label>
+            <label className="admin-label">인트로 텍스트 1 (줄바꿈 지원)</label>
             <textarea
               className="admin-input admin-textarea"
-              value={audition.online.requirements.join("\n")}
-              onChange={(e) => setAudition({ ...audition, online: { ...audition.online, requirements: e.target.value.split("\n").filter(Boolean) } })}
+              value={audition.introText1}
+              onChange={(e) => setAudition({ ...audition, introText1: e.target.value })}
+              rows={2}
             />
           </div>
-        </div>
-
-        <h4 style={{ fontSize: "12px", color: "var(--color-text-secondary)", margin: "24px 0 12px" }}>오프라인 오디션</h4>
-        <div className="admin-form-grid">
-          <div className="admin-form-group">
-            <label className="admin-label">제목</label>
-            <input className="admin-input" value={audition.offline.title} onChange={(e) => setAudition({ ...audition, offline: { ...audition.offline, title: e.target.value } })} />
+          <div className="admin-form-group admin-form-full">
+            <label className="admin-label">인트로 텍스트 2 (줄바꿈 지원)</label>
+            <textarea
+              className="admin-input admin-textarea"
+              value={audition.introText2}
+              onChange={(e) => setAudition({ ...audition, introText2: e.target.value })}
+              rows={2}
+            />
           </div>
           <div className="admin-form-group admin-form-full">
-            <label className="admin-label">설명</label>
-            <textarea className="admin-input admin-textarea" value={audition.offline.description} onChange={(e) => setAudition({ ...audition, offline: { ...audition.offline, description: e.target.value } })} />
+            <label className="admin-label">제출 자료 (줄바꿈으로 구분)</label>
+            <textarea
+              className="admin-input admin-textarea"
+              value={audition.materials.join("\n")}
+              onChange={(e) => setAudition({ ...audition, materials: e.target.value.split("\n").filter(Boolean) })}
+              rows={4}
+            />
           </div>
           <div className="admin-form-group admin-form-full">
-            <label className="admin-label">안내 메시지</label>
-            <input className="admin-input" value={audition.offline.note} onChange={(e) => setAudition({ ...audition, offline: { ...audition.offline, note: e.target.value } })} />
+            <label className="admin-label">접수 절차 (줄바꿈으로 구분)</label>
+            <textarea
+              className="admin-input admin-textarea"
+              value={audition.processSteps.join("\n")}
+              onChange={(e) => setAudition({ ...audition, processSteps: e.target.value.split("\n").filter(Boolean) })}
+              rows={3}
+            />
+          </div>
+          <div className="admin-form-group admin-form-full">
+            <label className="admin-label">개인정보 안내 (줄바꿈 지원)</label>
+            <textarea
+              className="admin-input admin-textarea"
+              value={audition.privacyNote}
+              onChange={(e) => setAudition({ ...audition, privacyNote: e.target.value })}
+              rows={2}
+            />
           </div>
         </div>
       </div>

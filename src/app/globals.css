@@ -361,6 +361,27 @@ body {
   animation: heroVideoFadeIn 3s ease forwards;
 }
 
+.hero-youtube-wrap {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-youtube-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 */
+  min-height: 100vh;
+  min-width: 177.78vh; /* inverse 16:9 */
+  transform: translate(-50%, -50%);
+  border: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  filter: brightness(0.7) saturate(0.4);
+  animation: heroVideoFadeIn 3s ease forwards;
+}
+
 @keyframes heroVideoFadeIn {
   from { opacity: 0; }
   to { opacity: 0.35; }

@@ -1,7 +1,18 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, Fragment } from "react";
 import type { CompanyInfo, AuditionInfo, HeroVideo } from "@/lib/types";
+
+function getYouTubeId(url: string): string | null {
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=))([^?&#]+)/);
+  return m ? m[1] : null;
+}
+
+function renderLines(text: string) {
+  return text.split("\n").map((line, i) => (
+    <Fragment key={i}>{i > 0 && <br />}{line}</Fragment>
+  ));
+}
 
 interface Artist {
   id: string;
@@ -206,14 +217,26 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
 
       {/* Hero Section */}
       <section id="home" className="hero-section">
-        <video
-          className="hero-video hero-video-bg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          src="/샘플2.mp4"
-        />
+        {(() => {
+          const ytId = heroVideo?.type === "youtube" && heroVideo?.url ? getYouTubeId(heroVideo.url) : null;
+          if (ytId) {
+            return (
+              <div className="hero-video hero-youtube-wrap">
+                <iframe
+                  className="hero-youtube-bg"
+                  src={`https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=${ytId}&modestbranding=1&iv_load_policy=3&disablekb=1`}
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  title="Hero background"
+                />
+              </div>
+            );
+          }
+          if (heroVideo?.type === "local" && heroVideo?.url) {
+            return <video className="hero-video hero-video-bg" autoPlay muted loop playsInline src={heroVideo.url} />;
+          }
+          return null;
+        })()}
         <div className="hero-bg-grain" />
         <div className="hero-overlay" />
         <div className="hero-content">
@@ -379,14 +402,10 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
           {/* Intro */}
           <div className="audition-intro reveal">
             <p className="audition-intro-text">
-              MOOD K ENTERTAINMENT는
-              <br />
-              아티스트의 현재보다 앞으로의 여정을 더 중요하게 생각합니다.
+              {renderLines(auditionInfo.introText1)}
             </p>
             <p className="audition-intro-text audition-intro-sub">
-              우리는 가능성을 서두르지 않습니다.
-              <br />
-              한 사람의 방향과 시간을 충분히 바라본 후, 신중하게 결정합니다.
+              {renderLines(auditionInfo.introText2)}
             </p>
           </div>
 
@@ -398,39 +417,34 @@ export default function HomeClient({ artists, notices, companyInfo, auditionInfo
               <div className="audition-apply-card">
                 <div className="audition-apply-label">제출 자료</div>
                 <ul className="audition-apply-list">
-                  <li>일반 사진 (정면 및 측면 각 1장)</li>
-                  <li>1분 이내 자기소개 영상</li>
-                  <li>프로필 PDF 1부 또는 연기 영상 (경력자 해당)</li>
-                  <li>활동 경력 사항 (경력자 해당)</li>
+                  {auditionInfo.materials.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
                 </ul>
               </div>
 
               <div className="audition-apply-card">
                 <div className="audition-apply-label">접수 방법</div>
                 <ol className="audition-apply-steps">
-                  <li>위 자료를 이메일로 제출</li>
-                  <li>이메일 제목: <strong>MOOD K AUDITION / 이름 / 출생연도</strong></li>
-                  <li>서류 검토 후, 합격자에 한해 2주 이내 개별 연락드립니다.</li>
+                  {auditionInfo.processSteps.map((step, i) => (
+                    <li key={i}>{step}</li>
+                  ))}
                 </ol>
               </div>
             </div>
 
-            <a href={`mailto:${auditionInfo.online.email}`} className="audition-email-block reveal-scale">
+            <a href={`mailto:${auditionInfo.email}`} className="audition-email-block reveal-scale">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 4L12 13 2 4" />
               </svg>
-              <span>{auditionInfo.online.email}</span>
+              <span>{auditionInfo.email}</span>
             </a>
           </div>
 
           {/* Privacy Note */}
           <div className="audition-privacy reveal reveal-delay-2">
-            <p>
-              제출된 모든 자료는 신중히 검토되며, 오디션 심사 목적 외 사용되지 않습니다.
-              <br />
-              심사 종료 후 안전하게 관리됩니다.
-            </p>
+            <p>{renderLines(auditionInfo.privacyNote)}</p>
           </div>
         </div>
       </section>

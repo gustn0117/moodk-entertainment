@@ -52,17 +52,12 @@ export interface CompanyInfo {
 }
 
 export interface AuditionInfo {
-  online: {
-    title: string;
-    description: string;
-    email: string;
-    requirements: string[];
-  };
-  offline: {
-    title: string;
-    description: string;
-    note: string;
-  };
+  email: string;
+  introText1: string;
+  introText2: string;
+  materials: string[];
+  processSteps: string[];
+  privacyNote: string;
 }
 
 export interface HeroVideo {
