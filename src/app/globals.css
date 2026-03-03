@@ -643,7 +643,7 @@ body {
   text-transform: uppercase;
 }
 
-.filmography-table { width: 100%; border-collapse: collapse; }
+.filmography-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 
 .filmography-table th {
   font-size: 9px;
@@ -651,7 +651,7 @@ body {
   text-transform: uppercase;
   color: var(--color-text-muted);
   text-align: left;
-  padding: 14px 12px 14px 0;
+  padding: 14px 8px;
   border-bottom: 1px solid var(--color-border);
   font-weight: 500;
 }
@@ -659,9 +659,9 @@ body {
 .filmography-table td {
   font-size: 14px;
   color: var(--color-text-secondary);
-  padding: 16px 12px 16px 4px;
+  padding: 16px 8px;
   border-bottom: 1px solid var(--color-border);
-  transition: color 0.3s, padding-left 0.3s;
+  transition: color 0.3s;
   position: relative;
 }
 
@@ -682,7 +682,6 @@ body {
 .filmography-table tbody tr:hover { background: rgba(212, 180, 133, 0.04); }
 .filmography-table tbody tr:hover td {
   color: var(--color-text-primary);
-  padding-left: 12px;
 }
 
 /* ========================================
@@ -810,9 +809,10 @@ body {
 
 .audition-block-title {
   font-size: 13px;
-  letter-spacing: 1px;
-  color: var(--color-text-primary);
-  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 600;
   margin-bottom: 32px;
 }
 
