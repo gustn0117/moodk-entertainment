@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://moodk-entertainment.hsweb.pics"),
   title: "MOOD K ENTERTAINMENT",
   description: "무드케이엔터테인먼트 - 배우 매니지먼트",
   openGraph: {
