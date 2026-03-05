@@ -308,14 +308,14 @@ body {
 }
 
 .hero-title-main {
-  font-size: clamp(42px, 7vw, 80px);
+  font-size: clamp(52px, 12vw, 80px);
   letter-spacing: clamp(10px, 2.5vw, 22px);
   display: block;
 }
 
 .hero-title-sub {
-  font-size: clamp(16px, 2vw, 24px);
-  letter-spacing: clamp(8px, 2vw, 16px);
+  font-size: clamp(14px, 2vw, 24px);
+  letter-spacing: clamp(5px, 1.5vw, 16px);
   display: block;
   margin-top: 8px;
 }
